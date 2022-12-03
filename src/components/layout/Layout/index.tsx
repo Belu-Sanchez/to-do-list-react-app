@@ -1,7 +1,17 @@
-import { NavBar } from "../Nav";
+import { Header } from "../Header";
+import { Footer } from "../Footer";
+import { FC } from "react";
 
-function Layout() {
-    return < NavBar />
+
+const Layout = () => {
+    return ( 
+    <>
+    < Header />
+ 
+    <Footer />
+     </>
+    );
+    
 }
   
 export { Layout };

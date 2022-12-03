@@ -1,10 +1,8 @@
-import { FC } from "react";
-import { Layout } from "../../components/layout";
-import { Login } from "../Login";
+
 import './style.scss'
 
 
-const Dashboard = () => {
+const ForGot = () => {
     return (
         <>
         <div className="dashboard-style">
@@ -18,12 +16,11 @@ const Dashboard = () => {
                 </svg>
                 </div>
             </div>
-            <div className="buttons"> 
-            <Login />
-            </div>
+        
+           
         </div>
         </>
         )
 }
   
-export { Dashboard };
+export { ForGot };

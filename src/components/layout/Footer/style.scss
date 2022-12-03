@@ -1,0 +1,12 @@
+footer{
+  padding: 1.5em;
+  font-size: 1em;
+  background-color: black;
+  color: white;
+  .container{
+    div{
+      display:flex;
+      justify-content: center;
+    }
+  }
+}
