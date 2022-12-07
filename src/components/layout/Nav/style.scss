@@ -1,0 +1,18 @@
+.btn-nav{
+        a{
+        all: unset;
+        border-radius: 3em;
+        border: solid #D500F9 2px;
+        color: #fff;
+        cursor: pointer;
+        padding: 0.5em 1em;
+        margin-right: 0.5em;
+        }
+      
+        a:hover {
+        color: #fff;
+        background-image: linear-gradient(to right, #d400f960, #ffd64f64);
+        }
+        
+}
+       

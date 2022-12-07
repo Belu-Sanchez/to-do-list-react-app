@@ -1,0 +1,31 @@
+.container-category{
+ 
+    h3{
+
+    }
+    div{
+        display: flex;
+
+        .form-control{
+            width: 50%;
+            margin-right: 1em;
+
+        }
+
+        button{
+            border-radius: 3em;
+            border: solid #D500F9 2px;
+            color: #fff;
+            background-color: #d400f93a ;
+            cursor: pointer;
+            padding: 0.5em 1em;
+            margin-right: 1em;
+
+          
+        }
+        // button:hover{
+        //     color: #fff;
+        //     background-image: linear-gradient(to right, #D500F9, #FFD54F);
+        // }
+    }
+}

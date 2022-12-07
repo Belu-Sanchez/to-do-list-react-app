@@ -6,9 +6,9 @@ import './style.scss'
 
 const Header = () => {
     return (
-      <Navbar bg="light" expand="lg">
+      <Navbar className="header-style" expand="lg">
       <Container>
-        <Navbar.Brand href="#home" className="logo">To-Do list</Navbar.Brand>
+        <Navbar.Brand className="logo">To-Do list</Navbar.Brand>
     
           <NavBar />
 

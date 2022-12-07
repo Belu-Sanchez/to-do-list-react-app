@@ -7,7 +7,6 @@
                 padding: 12px 15px 12px 15px !important;
                 width: 100%;
                 box-sizing: border-box;
-                // border: none !important;
                 border: 1px solid #d7a4de !important;
                 font-size: 16px !important;
                 color: #000 !important;
@@ -22,7 +21,7 @@
                 outline-width: 0;
                 font-weight: 400;
             }
-       .button-submit{
+       .button-color{
                 width: 100%;
                 border-radius: 5em;
                 color: #fff;
@@ -33,7 +32,7 @@
                 margin-top: 1em;
               
         }
-        .button-submit:hover {
+        .button-color:hover {
                 color: #fff;
                 background-image: linear-gradient(to right, #D500F9, #FFD54F);
         }
@@ -42,21 +41,4 @@
                 margin-top: 0.5em;
                 cursor: pointer;
         }
-
-        .button-sing-up{
-                width: 100%;
-                border-radius: 5em;
-                color: #fff;
-                background-image: linear-gradient(to right, #FFD54F, #D500F9);
-                padding: 0.7em;
-                cursor: pointer;
-                border: none;
-                margin-top: 1em;
-              
-            }
-            .button-sing-up{
-                color: #fff;
-                background-image: linear-gradient(to right, #D500F9, #FFD54F);
-            }
-  
 }
