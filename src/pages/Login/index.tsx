@@ -1,30 +1,30 @@
 import { Container } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { NavLink } from 'react-router-dom';
-import { Button, Input } from '../../components/forms'
+import { LoginForm } from '../../components/forms'
 import './style.scss'
 
 
 
 function Login(){
   return (
-    <Container> 
-      <Form className="form-login">
-        <h3>Please login to your account.</h3>
-        <Input id='email' label='Username' name='email' placeholder='Enter email' type='email' controlId='formBasicEmail'/>
-        <Input id='password' label='Password' name='password' placeholder='Password' type='password' controlId='formBasicPassword'/>
-        
-        <NavLink to="/Home"> 
-        <Button className='color' type="submit" text="Submit"/>
-        </NavLink>
-        <div>
-          <Button className='forgot' type="button" text="Forgot Password?"/>
-        </div>
-        <div>
-          <Button className='color' type="button" text="Sing Up"/>
-        </div>
-      </Form>
-    </Container>
+    <>
+     <div className="dashboard-style">
+            <div className="wrapper"> 
+                <div className="logo-home">To-Do list
+                </div>
+                <div>
+                <svg className="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"> 
+                <circle className="checkmark__circle" cx="26" cy="26" r="25" fill="none"/> 
+                <path className="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                </div>
+            </div>
+            <div className="buttons"> 
+            <LoginForm />
+            </div>
+        </div> 
+        </>
   );
 }
   

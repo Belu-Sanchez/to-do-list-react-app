@@ -2,13 +2,11 @@ import { NavLink } from 'react-router-dom';
 import './style.scss'
 
 const NavBar = ( ) => {
-
-  
     return (
       <div className="btn-nav">
-        <NavLink to="/Task">Tasks</NavLink>
-        <NavLink to="/Category">Category</NavLink>
-        <NavLink to="/Profile">Profile</NavLink>
+        <NavLink to="/tasks">Tasks</NavLink>
+        <NavLink to="/categories">Categories</NavLink>
+        <NavLink to="/profile">Profile</NavLink>
       </div>
     );
   };

@@ -1,0 +1,1 @@
+export const DB_BASE_URL = "https://todolist-8ba8a-default-rtdb.firebaseio.com";

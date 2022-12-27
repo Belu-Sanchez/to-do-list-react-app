@@ -1,22 +1,23 @@
+import { title } from "process"
 import { FC, ReactNode } from "react"
+import { Container } from "react-bootstrap"
 // import { Category, Task } from "../../../pages";
 
 type Props = {
     children: ReactNode
-    title: string
     className?: string
+
 }
 
 
-const Main: FC<Props> = ({children, title, className}) => {
+const Main: FC<Props> = ({children, className}) => {
     return (
-     
-        <main className={className}>
-                <h1>{title}</h1>
+     <Container > 
+        <main className={`${className} mt-3`} >
                 {children}
         </main>
    
-    
+        </Container>
         )
 }
   

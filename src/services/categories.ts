@@ -1,25 +1,53 @@
+import { DB_BASE_URL } from '../constants';
 import { Category } from '../types';
 
-const getCategories = () => {
+const getAll = () => {
 
 }
 
-export const addCategory = (playload: any) => {
+type Payload = Omit<Category, "id">;
+
+const add = async (category: Payload) => {
     const options = {
         method: "POST",
-        body: JSON.stringify(playload)
+        body: JSON.stringify(category)
     }
-    fetch("https://todolist-8ba8a-default-rtdb.firebaseio.com/categories.json", options)
-}
-
-const getCategory = (id: string) => {
-
-}
-
-const updateCategories = (id:string, playload: any) => {
-
-}
-
-const removeCategory = (id: string ) => {
+    const response = await fetch(`${DB_BASE_URL}/categories.json`, options);
+    const data = await response.json();
+    
+    if (data.name) {
+        return true;
+      } else {
+        return false;
+      }
 
 }
+
+
+
+const get = (id: string) => {
+
+}
+
+const update = async ({name, color, id}: Category) => {
+    const options = {
+        method: "PUT",
+        body: JSON.stringify({name, color})
+    }
+
+
+    const response = await fetch(`${DB_BASE_URL}/categories/${id}.json`, options);
+    const data = await response.json();
+    
+    if (data.name) {
+        return true;
+      } else {
+        return false;
+      }
+}
+
+const remove = (id: string ) => {
+
+}
+
+export const categoriesServices = { getAll, get, add, update, remove}

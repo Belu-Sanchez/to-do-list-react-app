@@ -1,31 +1,32 @@
 import Table from 'react-bootstrap/Table';
 import { Container } from 'react-bootstrap';
-import { Layout } from '../../components/layout';
+import { Main } from '../../components/layout';
+import './style.scss';
+import { NavLink } from 'react-router-dom';
 
 
 const Task = () => {
     return (
         <> 
-        <Layout title='Task' className='Hola' >
-        <Container> 
-      <Table striped bordered hover size="sm">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Task</th>
-          <th>Delete</th>
-          <th>Edite</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>22/12/2022</td>
-          <td>shop</td>
-        </tr>
-      </tbody>
-    </Table>
-    </Container>
-    </Layout>
+        {/* <Main className='container-tasks' >
+      
+          <h2>At the moment there are no tasks</h2>
+    
+    </Main> */}
+
+
+    <Container className="container-task">
+
+<h2>Add Task</h2>
+<div className="btn-save">
+    <NavLink to="save">Add</NavLink>
+</div>
+{/* <Button text="Add" className="category" type="button"/> */}
+
+</Container>
+<Container className="container-task">
+<h2>At the moment there are no tasks</h2>
+</Container>
         </>
     );
 };
