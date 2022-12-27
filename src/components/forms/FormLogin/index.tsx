@@ -17,13 +17,13 @@ const LoginForm = () => {
         <Input id='password' label='Password' name='password' placeholder='Password' type='password' controlId='formBasicPassword'/>
         
         <NavLink to="/Home"> 
-        <Button className='color' type="submit" text="Submit"/>
+        <Button variant='color' type="submit" >Submit</Button>
         </NavLink>
         <div>
-          <Button className='forgot' type="button" text="Forgot Password?"/>
+          <Button variant='forgot' type="button">Forgot Password?</Button>
         </div>
         <div>
-          <Button className='color' type="button" text="Sing Up"/>
+          <Button variant='color' type="button">Sing Up"</Button>
         </div>
       </Form>
     </Container>

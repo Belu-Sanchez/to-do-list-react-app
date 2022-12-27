@@ -1,9 +1,14 @@
 import { DB_BASE_URL } from '../constants';
+import { mapToArray } from '../helpers/mapToArray';
 import { Category } from '../types';
 
-const getAll = () => {
-
+const getAll = async (): Promise<Category[]> => {
+    const response = await fetch(`${DB_BASE_URL}/categories.json`);
+    const data = await response.json();
+    return mapToArray<Category>(data);
 }
+
+
 
 type Payload = Omit<Category, "id">;
 
@@ -14,7 +19,7 @@ const add = async (category: Payload) => {
     }
     const response = await fetch(`${DB_BASE_URL}/categories.json`, options);
     const data = await response.json();
-    
+        
     if (data.name) {
         return true;
       } else {
@@ -25,8 +30,10 @@ const add = async (category: Payload) => {
 
 
 
-const get = (id: string) => {
-
+const get = async (id: string): Promise<Category> => {
+  const response = await fetch(`${DB_BASE_URL}/categories/${id}.json`);
+  const data = await response.json();
+  return {id, ...data}
 }
 
 const update = async ({name, color, id}: Category) => {
@@ -46,8 +53,12 @@ const update = async ({name, color, id}: Category) => {
       }
 }
 
-const remove = (id: string ) => {
+const remove = async (id: string ) => {
+    const options = {
+      method: "DELETE",
+    } 
 
+    await fetch(`${DB_BASE_URL}/categories/${id}.json`, options);   
 }
 
 export const categoriesServices = { getAll, get, add, update, remove}

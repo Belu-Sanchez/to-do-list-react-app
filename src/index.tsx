@@ -3,6 +3,7 @@ import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Dashboard, Login, Categories, Task, AddTasks, AddCategory} from "./pages";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css"
 
 
 
@@ -38,7 +39,8 @@ root.render(
         <Route path="categories/">
           <Route index element={<Categories />} />
           <Route path="save" element={<AddCategory />} />
-          {/* <Route path="save/:categroyId" element={<SaveCategory />} />  */}
+          <Route path="save/:id" element={<AddCategory />} /> 
+          
         </Route> 
       </Route>
     </Routes>
