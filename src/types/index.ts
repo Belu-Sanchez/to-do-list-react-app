@@ -1,11 +1,10 @@
-
 export type User = {
     id: string
     name: string
     lastname: string
     email: string
     password: string
-    birthdate: Date
+    birthdate: string
 }
 
 export type Category = {
