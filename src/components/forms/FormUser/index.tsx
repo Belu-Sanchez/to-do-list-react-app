@@ -1,6 +1,8 @@
 import './style.scss'
 import { FC, ReactNode, useState } from "react";
 import { usersService } from '../../../services/users';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ToastAdd } from '../ToastAdd';
 
 
 const FormUser = () => {
@@ -10,10 +12,41 @@ const FormUser = () => {
     const [password, setPassword] = useState("");
     const [birthdate, setBirthdate] = useState("");
 
+    const [ifError, setIfError] = useState(false);
+    const navigate = useNavigate();
+    const { id } = useParams();
+
+    const getUserEdit = async () => {
+        if (id) {
+            const response = await usersService.get(id)
+            setName(response.name)
+            setLastname(response.lastname)
+            setEmail(response.email)
+            setBirthdate(response.birthdate)
+            setPassword(response.password)
+        }
+    }
+
+    if (id && name === "" && lastname === "" && email === "" && password === "" && birthdate === "") getUserEdit();
+
+
+
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        await usersService.add({email, birthdate, lastname, name, password });
-    
+        setIfError(false);
+
+        let rta;
+            if (id) {
+                rta = await usersService.update({ id, name, lastname, email, password, birthdate });
+            } else {
+                rta = await usersService.add({ name, lastname, email, password, birthdate });
+            }
+            
+            if (rta) {
+                navigate('/users')
+            } else {
+                setIfError(true);
+            }
     
     }
 
@@ -37,6 +70,7 @@ const FormUser = () => {
                 <label htmlFor="">Password</label>
                 <input  type="password" value={password} onChange={e => setPassword(e.target.value)}/>
                 <button type="submit">Sumbit</button>
+                {ifError && <ToastAdd />}
             </form>
 
         </>

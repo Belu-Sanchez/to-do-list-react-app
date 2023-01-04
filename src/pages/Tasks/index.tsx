@@ -1,34 +1,32 @@
-import Table from 'react-bootstrap/Table';
-import { Container } from 'react-bootstrap';
-import { Main } from '../../components/layout';
-import './style.scss';
-import { NavLink } from 'react-router-dom';
+import { CardAdd, NoContent } from '../../components/forms';
+import { useState } from 'react';
+import { usersTasks } from '../../services/tasks';
+import { Task } from '../../types';
 
 
-const Task = () => {
+
+const Tasks = () => {
+
+    const [tasks, setTasks] = useState<Task[]>([]);
+
+    const getTasks = async () => {
+        const response = await usersTasks.getAll();
+        setTasks(response)
+
+    }
+
+    getTasks();
     return (
-        <> 
-        {/* <Main className='container-tasks' >
-      
-          <h2>At the moment there are no tasks</h2>
-    
-    </Main> */}
+        <>
 
-
-    <Container className="container-task">
-
-<h2>Add Task</h2>
-<div className="btn-save">
-    <NavLink to="save">Add</NavLink>
-</div>
-{/* <Button text="Add" className="category" type="button"/> */}
-
-</Container>
-<Container className="container-task">
-<h2>At the moment there are no tasks</h2>
-</Container>
+            <CardAdd variant='tasks' text='tasks' classNameChildren='tabla'>
+                {/* {tasks.length >= 1 && <PrintUsers />} */}
+                {tasks.length === 0 && <NoContent text='tasks' variant='no-tasks' />}
+            </CardAdd>
         </>
     );
 };
 
-export { Task }
+export { Tasks }
+
+

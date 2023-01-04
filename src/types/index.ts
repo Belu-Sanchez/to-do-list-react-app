@@ -16,7 +16,7 @@ export type Category = {
 export type Task = {
     id: string
     title: string
-    date: Date
+    date: string
     category: Category
     description: string
     status: string

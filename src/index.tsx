@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Dashboard, Login, Categories, Task, AddTasks, AddCategory, Users} from "./pages";
+import { Dashboard, Login, Categories, Tasks, AddTasks, AddCategory, Users} from "./pages";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css"
 import { FormUser } from "./components/forms";
@@ -20,7 +20,7 @@ root.render(
 
         {/* <Route path="tasks" element={<Task />} /> */}
         <Route path="tasks/">
-          <Route index element={<Task />} />
+          <Route index element={<Tasks />} />
           <Route path="save" element={<AddTasks />} />
         </Route>
     
@@ -36,7 +36,7 @@ root.render(
         <Route path="users/">
           <Route index element={<Users />} /> 
            <Route path="save" element={<FormUser />} />
-          {/* <Route path="save/:userId" element={<SaveUser />} />  */}
+          <Route path="save/:id" element={<FormUser />} /> 
          </Route>
 
         <Route path="categories/">

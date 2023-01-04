@@ -55,7 +55,7 @@ const FormAddCategory = () => {
                     <input type="text" name="name" value={name} id="name-control" onChange={e => setName(e.target.value)} required/>
                 </div>
                 <div className="form-color">
-                    <label htmlFor="color-control">Color</label>
+                    <label htmlFor="color-control" >Color</label>
                     <input type="color" name="color" value={color} id="color-control" onChange={e => setColor(e.target.value)} />
                 </div>
                 <button className="btn-add" type="submit">Submit</button>

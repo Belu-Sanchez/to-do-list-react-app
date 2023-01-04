@@ -1,20 +1,30 @@
-import { FC } from "react";
-import { Container } from "react-bootstrap";
+import { FC, ReactNode } from "react";
 import { NavLink } from "react-router-dom";
+import './style.scss';
 
 type Props = {
     variant: string;
     text: string;
+    children?: ReactNode;
+    classNameChildren?: string;
 }
-const CardAdd: FC<Props> = ({ variant, text }) => {
+const CardAdd: FC<Props> = ({ variant, text, children, classNameChildren }) => {
     return (
         <>
-            <Container className={`container-${variant}`}>
-                <h2>Add {text}</h2>
-                <div className="btn-save">
-                    <NavLink to="save">Add</NavLink>
+            <div className={`container-card-add container-${variant}`}>
+                <div className="row">
+                    <div className="col">
+                        <h2 className="">Add {text}</h2>
+                    </div>
+                    <div className="col col-lg-2 btn-save">
+                        <NavLink to="save">Add</NavLink>
+                    </div>
                 </div>
-            </Container>
+
+                <div className={`row mt-5 ${classNameChildren}`}>
+                    {children}
+                </div>
+            </div>
         </>
     );
 };

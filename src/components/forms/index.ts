@@ -7,4 +7,6 @@ export {ToastAdd } from './ToastAdd'
 export { NoContent } from './NoContent'
 export { CardAdd } from './CardAdd'
 export { FormUser } from './FormUser'
+export { PrintUsers } from './PrintUsers'
+export { PrintCategories } from './PrintCategories'
  
