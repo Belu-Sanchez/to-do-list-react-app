@@ -8,36 +8,47 @@ import { Button } from '../Button';
 
 const PrintUsers = () => {
 
-    const [users, setUsers] = useState<User[]>([]);
-   
-    const navigate = useNavigate();
-    const [search, setSearch] = useState("");
+  const [users, setUsers] = useState<User[]>([]);
 
-    const fetchData = () => usersService.getAll(search).then((data) => setUsers(data));
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+  const [select, setSelect] = useState("");
 
- useEffect(() => {
-fetchData();
- }, [search]);
+  const fetchData = () => usersService.getAll(search, select).then((data) => setUsers(data));
 
-const removeUsers = async (id: string) => {
+  useEffect(() => {
+    fetchData();
+  }, [search, select]);
+
+  const removeUsers = async (id: string) => {
     await usersService.remove(id);
     fetchData();
   }
 
 
 
-    return (
-        <>
-      <div> 
-      <form action="">
-        <input
-          type="text"
-          name="text"
-          id="text"
-          placeholder="Search users"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+  return (
+    <>
+      <div>
+        <form action="">
+          <input
+            type="text"
+            name="text"
+            id="text"
+            placeholder="Search users"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <div>
+            <select onChange={(e) => setSelect(e.target.value)}>
+              <option selected value="name" >Name</option>
+              <option value="lastname">Lastname</option>
+              <option value="bithdate">Birthdate</option>
+              <option value="email">Email</option>
+              <option value="password">Password</option>
+              {select}
+            </select>
+          </div>
         </form>
         <div className="table-responsive">
           <table className="table table-hover">
@@ -67,13 +78,13 @@ const removeUsers = async (id: string) => {
                         icon="trash"
                         handleClick={() => removeUsers(elem.id)}
                       />
-                    
+
                       <Button
-                      type="button"
-                    variant="outline-secondary btn-tabla"
-                    icon="pencil"
-                    handleClick={() => navigate(`/users/save/${elem.id}`)}
-                  />
+                        type="button"
+                        variant="outline-secondary btn-tabla"
+                        icon="pencil"
+                        handleClick={() => navigate(`/users/save/${elem.id}`)}
+                      />
                     </td>
                   </tr>
                 );
@@ -81,11 +92,11 @@ const removeUsers = async (id: string) => {
 
             </tbody>
           </table>
-        </div> 
         </div>
-   
-        </>
-    );
+      </div>
+
+    </>
+  );
 };
 
 export { PrintUsers }

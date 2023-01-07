@@ -1,4 +1,4 @@
-.container-add-user {
+.container-add-task {
   border: solid 1px rgba(188, 184, 184, 0.242);
   border-radius: 0.5em;
   padding: 2em;
@@ -9,7 +9,14 @@
   input {
     margin: 0.5em 0.5em;
     padding: 0.3em;
+    width: 100%;
     border-radius: 0.3em;
+    box-sizing: border-box;
+    border: 1px solid #d7a4de;
+  }
+
+  .select-category {
+    margin: 0.5em 0.5em;
     box-sizing: border-box;
     border: 1px solid #d7a4de;
   }

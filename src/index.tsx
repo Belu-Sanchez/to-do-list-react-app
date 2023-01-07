@@ -24,6 +24,7 @@ root.render(
           <Route path="save" element={<AddTasks />} />
         </Route>
     
+        <Route path="tasks/save" element={<AddTasks />} />
 
         <Route path="login" element={<Login />} />
         {/* <Route path="users" element={<Users />} /> */}

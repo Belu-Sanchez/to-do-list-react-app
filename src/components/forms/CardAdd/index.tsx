@@ -3,15 +3,15 @@ import { NavLink } from "react-router-dom";
 import './style.scss';
 
 type Props = {
-    variant: string;
     text: string;
     children?: ReactNode;
     classNameChildren?: string;
+    modoDark?: string;
 }
-const CardAdd: FC<Props> = ({ variant, text, children, classNameChildren }) => {
+const CardAdd: FC<Props> = ({ text, children, classNameChildren, modoDark }) => {
     return (
         <>
-            <div className={`container-card-add container-${variant}`}>
+            <div className={`container-card-add ${modoDark}`} >
                 <div className="row">
                     <div className="col">
                         <h2 className="">Add {text}</h2>

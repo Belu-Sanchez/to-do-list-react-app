@@ -1,6 +1,6 @@
 import { CardAdd, NoContent } from '../../components/forms';
 import { useState } from 'react';
-import { usersTasks } from '../../services/tasks';
+import { tasksService } from '../../services/tasks';
 import { Task } from '../../types';
 
 
@@ -9,19 +9,19 @@ const Tasks = () => {
 
     const [tasks, setTasks] = useState<Task[]>([]);
 
-    const getTasks = async () => {
-        const response = await usersTasks.getAll();
-        setTasks(response)
+    // const getTasks = async () => {
+    //     const response = await tasksService.getAll();
+    //     setTasks(response)
 
-    }
+    // }
 
-    getTasks();
+    // getTasks();
     return (
         <>
 
-            <CardAdd variant='tasks' text='tasks' classNameChildren='tabla'>
+            <CardAdd  text='tasks' classNameChildren='tabla' modoDark='dark'>
                 {/* {tasks.length >= 1 && <PrintUsers />} */}
-                {tasks.length === 0 && <NoContent text='tasks' variant='no-tasks' />}
+                {tasks.length !== 0 && <NoContent text='tasks' variant='no-tasks' />}
             </CardAdd>
         </>
     );

@@ -21,7 +21,7 @@ const Categories = () => {
   
     return (
       <>
-        <CardAdd variant='category' text='categories' classNameChildren='tabla'>
+        <CardAdd text='categories' classNameChildren='tabla'>
           {categories.length >= 1 && <PrintCategories />}
           {categories.length === 0 && <NoContent text='categories' />}
         </CardAdd>

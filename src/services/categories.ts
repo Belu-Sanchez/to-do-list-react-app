@@ -37,11 +37,20 @@ const add = async (category: Payload) => {
 
 
 
+
 const get = async (id: string): Promise<Category> => {
   const response = await fetch(`${DB_BASE_URL}/categories/${id}.json`);
   const data = await response.json();
-  return {id, ...data}
+  return  mapToArray<Category>(data)[0];
 }
+
+
+
+
+
+
+
+
 
 const update = async ({name, color, id}: Category) => {
     const options = {

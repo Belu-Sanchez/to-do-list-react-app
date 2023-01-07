@@ -18,7 +18,7 @@ const Users = () => {
 
   return (
     <>
-      <CardAdd variant='users' text='users' classNameChildren='tabla'>
+      <CardAdd text='users' classNameChildren='tabla'>
         {users.length >= 1 && <PrintUsers />}
         {users.length === 0 && <NoContent text='users' variant='no-users' />}
       </CardAdd>

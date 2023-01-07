@@ -1,8 +1,10 @@
+import { FormTask } from "../../components/forms/FormTask";
+
 const AddTasks = () => {
 
     return (
         <> 
-            <h2>AGREGAR TAREAS</h2>
+            < FormTask />
             
         </>
     );
