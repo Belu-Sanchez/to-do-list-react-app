@@ -2,16 +2,31 @@ import { DB_BASE_URL } from "../constants";
 import { mapToArray } from "../helpers/mapToArray";
 import { User } from "../types";
 
-const getAll = async (search?:string, select?:string): Promise<User[]> => {
+
+
+type GetAllPayload = {
+  name?: string | null, 
+  lastname?: string | null
+}
+
+
+
+
+
+const getAll = async ({ name, lastname }: GetAllPayload): Promise<User[]> => {
     const response = await fetch(`${DB_BASE_URL}/users.json`);
     const data = await response.json();
-    const users =  mapToArray<User>(data);
+    const arrayData = mapToArray<User>(data);
 
-  return search && select
-    ? users
-    .filter((elem) => elem.name.includes(search))
-    .filter((elem) => elem.lastname.includes(select))
-    : users;
+    return arrayData
+      .filter((user) => {
+          if(name) {
+  
+            return user.name.includes(name) 
+          }
+          return true
+      })
+      .filter(user => lastname ? user.lastname.includes(lastname) : true)
   }
 
 

@@ -3,10 +3,13 @@ export { Input } from './Input';
 export { LoginForm } from './FormLogin';
 export { FormAddCategory } from './FormAddCategory';
 export { FormAdd } from './FormAdd';
-export {ToastAdd } from './ToastAdd'
-export { NoContent } from './NoContent'
-export { CardAdd } from './CardAdd'
-export { FormUser } from './FormUser'
-export { PrintUsers } from './PrintUsers'
-export { PrintCategories } from './PrintCategories'
- 
+export {ToastAdd } from './ToastAdd';
+export { NoContent } from './NoContent';
+export { CardAdd } from './CardAdd';
+export { FormUser } from './FormUser';
+export { PrintUsers } from './PrintUsers';
+export { PrintCategories } from './PrintCategories';
+export { PrintTasks } from './PrintTasks';
+export {  FormFilterCategories } from './FormFilterCategories';
+export { FormFilterTasks } from './FormFilterTasks';
+export { FormFilterUsers } from './FormFilterUsers';

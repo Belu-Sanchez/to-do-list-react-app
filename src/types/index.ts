@@ -4,7 +4,7 @@ export type User = {
     lastname: string
     email: string
     password: string
-    birthdate: string
+    birthdate: Date
 }
 
 export type Category = {

@@ -10,7 +10,7 @@ const FormUser = () => {
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [birthdate, setBirthdate] = useState("");
+    const [birthdateUser, setBirthdate] = useState("");
 
     const [ifError, setIfError] = useState(false);
     const navigate = useNavigate();
@@ -22,19 +22,19 @@ const FormUser = () => {
             setName(response.name)
             setLastname(response.lastname)
             setEmail(response.email)
-            setBirthdate(response.birthdate)
+            // setBirthdate(response.birthdate)
             setPassword(response.password)
         }
     }
 
-    if (id && name === "" && lastname === "" && email === "" && password === "" && birthdate === "") getUserEdit();
+    if (id && name === "" && lastname === "" && email === "" && password === "" && birthdateUser === "") getUserEdit();
 
 
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setIfError(false);
-
+        const birthdate = new Date(birthdateUser)
         let rta;
             if (id) {
                 rta = await usersService.update({ id, name, lastname, email, password, birthdate });
@@ -62,7 +62,7 @@ const FormUser = () => {
                 <input type="text" value={lastname} onChange={e => setLastname(e.target.value)}/>
 
                 <label htmlFor="">Birthdate</label>
-                <input type="date" value={birthdate} onChange={e => setBirthdate(e.target.value)}/>
+                <input type="date" value={birthdateUser} onChange={e => setBirthdate(e.target.value)}/>
 
                 <label htmlFor="">Email</label>
                 <input  type="email" value={email} onChange={e => setEmail(e.target.value)}/>

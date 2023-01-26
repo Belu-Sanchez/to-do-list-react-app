@@ -14,64 +14,72 @@ const FormTask = () => {
     const [dateTask, setDate] = useState("");
     const [status, setStatus] = useState("");
     const [description, setDescription] = useState("");
+    const [idCategory, setIdCategory] = useState("");
+    const [statusEdit, setStatusEdit] = useState("");
 
-
-    
+    // const [idTask, setIdTask] = useState("");
 
     //lo uso para pintar el select de categorias
     const [categoryObj, setCategory] = useState<Category[]>([]);
 
     // este deberia tomar el valor de la categoria seleccionada y guardarlo en la base de datos
-    const [categoryTask, setCategoryTask] = useState("");
+    // const [categoryTask, setCategoryTask] = useState("");
+    const [ifError, setIfError] = useState(false);
+
+
+    const navigate = useNavigate();
+
 
     useEffect(() => {
-        const printCategories = async () => {
-            const response = await categoriesServices.getAll()
+        categoriesServices.getAll({text: "", color: ""}).then(data => setCategory(data))
+    }, [])
 
-            setCategory(response)
+    const { id } = useParams();
+
+
+    useEffect(() => {
+        if (id) {
+            tasksService.get(id).then(data => {
+                setIdCategory(data.category.id)
+                setStatusEdit(data.status)
+    
+                 console.log(new Date(data.date).toString()) //27/1/2023
+                // console.log(data.date) //2023-01-28T00:00:00.000Z
+                setTitle(data.title)
+            //  setDate((data.date).toString())
+                setDescription(data.description)
+            })
 
         }
 
-        printCategories()
 
-    }, [])
-
-
-
-
+    },[])
 
 
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-
+        setIfError(false);
         const date = new Date(dateTask)
+        const category = categoryObj.find((elem) => elem.id === idCategory)
+console.log(idCategory)
+console.log(category)
+console.log(id)
 
+        if (category) {
+            if (id) {
+                await tasksService.update({ category, date, description, id, status, title })
+                navigate('/tasks')
+            }else{
+                   await tasksService.add({ title, date, description, status, category });
+            navigate('/tasks')
+            }
+         
+        }else{
+           setIfError(true);
 
-        //llega un objeto con la categoria. {id: 'compras'}
-        const category = await categoriesServices.get(categoryTask)
-
-
-    // setCategoryTask(category)
-     
-
-console.log(categoryTask)
-
-        // setIfError(false);
-        await tasksService.add({ title, date, description, status, category});
-
-        // let rta;
-        //     if (id) {
-        //         rta = await usersService.update({ id, name, lastname, email, password, birthdate });
-        //     } else {
-        //         rta = await usersService.add({ name, lastname, email, password, birthdate });
-        //     }
-
-        //     if (rta) {
-        //         navigate('/users')
-        //     } else {
-        //         setIfError(true);
-        //     }
+        }
+      
 
     }
 
@@ -88,20 +96,23 @@ console.log(categoryTask)
 
                 <div>
                     <label>Category</label>
-                    <select className="form-control select-category" id="exampleFormControlSelect1" onChange={e => setCategoryTask(e.target.value)}>{
-                        categoryObj.map((elem) => {
-                            return (<option selected value={elem.id}>{elem.name}</option >
-                            )
-                        })
-
-                    }
+                    <select className="form-control select-category" id="exampleFormControlSelect1" onChange={e => setIdCategory(e.target.value)}>
+                        <option selected disabled>Select an option</option>{
+                            categoryObj.map((elem) => {
+                                return (<option value={elem.id} selected={elem.id === idCategory}>{elem.name}</option>
+                                )
+                            })
+                        }
                     </select>
                 </div>
 
                 <div>
                     <label>Status</label>
-                    <select className="form-control select-category" >
-                        <option selected value="to-do">To-Do</option>
+                    <select className="form-control select-category" onChange={e => setStatus(e.target.value)}>
+                        <option selected disabled>Select an option</option>
+                        <option id="to-do" value="To-Do" selected={"To-Do" === statusEdit}>To Do</option>
+                        <option id="in-progress" value="Work in progress" selected={"wWrk in progress" === statusEdit}>Work in progress</option>
+                        <option id="done" value="Done" selected={"Done" === statusEdit}>Done</option>
                     </select>
                 </div>
 
@@ -111,7 +122,7 @@ console.log(categoryTask)
                 </div>
                 <button type="submit">Sumbit</button>
 
-
+                {ifError && <ToastAdd />}
             </form>
 
         </>

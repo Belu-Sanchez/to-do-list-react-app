@@ -1,55 +1,30 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usersService } from '../../../services/users';
 import { User } from '../../../types';
+import { Spinner } from '../../commons';
 import { Button } from '../Button';
 
+type Props = {
+  users: User[];
+}
 
 
-const PrintUsers = () => {
+const PrintUsers:FC<Props> = ({users}) => {
 
-  const [users, setUsers] = useState<User[]>([]);
 
   const navigate = useNavigate();
-  const [search, setSearch] = useState("");
-  const [select, setSelect] = useState("");
-
-  const fetchData = () => usersService.getAll(search, select).then((data) => setUsers(data));
-
-  useEffect(() => {
-    fetchData();
-  }, [search, select]);
 
   const removeUsers = async (id: string) => {
     await usersService.remove(id);
-    fetchData();
   }
 
-
+  if (!users.length) return <Spinner />
 
   return (
     <>
       <div>
-        <form action="">
-          <input
-            type="text"
-            name="text"
-            id="text"
-            placeholder="Search users"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <div>
-            <select onChange={(e) => setSelect(e.target.value)}>
-              <option selected value="name" >Name</option>
-              <option value="lastname">Lastname</option>
-              <option value="bithdate">Birthdate</option>
-              <option value="email">Email</option>
-              <option value="password">Password</option>
-              {select}
-            </select>
-          </div>
-        </form>
+
         <div className="table-responsive">
           <table className="table table-hover">
             <thead>
@@ -68,20 +43,20 @@ const PrintUsers = () => {
                   <tr key={elem.id}>
                     <td>{elem.name}</td>
                     <td>{elem.lastname}</td>
-                    <td>{elem.birthdate}</td>
+                    <td> {new Date(elem.birthdate).getDate() + 1}/{new Date(elem.birthdate).getMonth() + 1}/{new Date(elem.birthdate).getFullYear()}</td>
                     <td>{elem.email}</td>
                     <td>{elem.password}</td>
                     <td>
                       <Button
                         type="button"
-                        variant="outline-danger btn-tabla"
+                        variant="outline-danger btn-tabla m-2"
                         icon="trash"
                         handleClick={() => removeUsers(elem.id)}
                       />
 
                       <Button
                         type="button"
-                        variant="outline-secondary btn-tabla"
+                        variant="outline-secondary btn-tabla m-2"
                         icon="pencil"
                         handleClick={() => navigate(`/users/save/${elem.id}`)}
                       />

@@ -1,0 +1,37 @@
+.form-filter-categories {
+  div {
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+  }
+  .input-name {
+    margin-left: 0.5em;
+    border-radius: 1em;
+  }
+  h2{
+    color:#d285cb
+  }
+  .input-color {
+    width: 3em;
+    height: 3em;
+    background-color: transparent;
+    border: none;
+    margin-left: 0.5em;
+  }
+
+  .input-color::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+  }
+  .button-search {
+    all: unset;
+    border-radius: 3em;
+    border: 1px solid #d7a4de;
+    box-shadow: 2px 3px#ac84b1;
+    background-color: #e6caea78;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    padding: 0.5em 1em;
+    margin-bottom: 1em;
+  }
+}

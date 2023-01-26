@@ -2,17 +2,26 @@ import { DB_BASE_URL } from '../constants';
 import { mapToArray } from '../helpers/mapToArray';
 import { Category } from '../types';
 
-const getAll = async (search?: string): Promise<Category[]> => {
+type GetAllPayload = {
+  text?: string | null, 
+  color?: string | null
+}
+
+const getAll = async ({ text, color }: GetAllPayload): Promise<Category[]> => {
     const response = await fetch(`${DB_BASE_URL}/categories.json`);
     const data = await response.json();
-   const categories =  mapToArray<Category>(data);
 
-   return search
-   ? categories 
-   .filter((elem) => elem.name.includes((search)))
-   : categories
+    const arrayData = mapToArray<Category>(data);
 
-
+    return arrayData
+      .filter((cat) => {
+          if(text) {
+            console.log(text)
+            return cat.name.includes(text) 
+          }
+          return true
+      })
+      .filter(cat => color ? cat.color.includes(color) : true)
 };
 
 
@@ -41,14 +50,8 @@ const add = async (category: Payload) => {
 const get = async (id: string): Promise<Category> => {
   const response = await fetch(`${DB_BASE_URL}/categories/${id}.json`);
   const data = await response.json();
-  return  mapToArray<Category>(data)[0];
+  return data
 }
-
-
-
-
-
-
 
 
 

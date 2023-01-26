@@ -1,28 +1,57 @@
-import { CardAdd, NoContent } from '../../components/forms';
-import { useState } from 'react';
+import { CardAdd, FormFilterTasks, NoContent, PrintTasks } from '../../components/forms';
+import { useEffect, useState } from 'react';
 import { tasksService } from '../../services/tasks';
 import { Task } from '../../types';
-
-
+import { useSearchParams } from 'react-router-dom';
+import { FilterFileds } from './types'
+ 
 
 const Tasks = () => {
 
     const [tasks, setTasks] = useState<Task[]>([]);
+    const [searchParams, setSearchParams] = useSearchParams("");
 
-    // const getTasks = async () => {
-    //     const response = await tasksService.getAll();
-    //     setTasks(response)
 
-    // }
 
-    // getTasks();
+
+
+    useEffect(() => {
+  const criteria = { 
+        status: searchParams.get('status'),
+      }
+
+     tasksService.getAll(criteria).then(response =>  setTasks(response));
+       
+    }, [searchParams])
+  
+
+  
+    const setSearchQuery = (params: FilterFileds) => {
+  
+      setSearchParams(params)
+  
+    }
+
+
+
+
+
+
+
+
+
+
+
     return (
         <>
+            <CardAdd  text='tasks' classNameChildren='tabla' modoDark=''>
+                 {/* <FormFilterTasks  onChange={setSearchQuery }/> */}
 
-            <CardAdd  text='tasks' classNameChildren='tabla' modoDark='dark'>
-                {/* {tasks.length >= 1 && <PrintUsers />} */}
-                {tasks.length !== 0 && <NoContent text='tasks' variant='no-tasks' />}
+                {tasks.length >= 1 && <PrintTasks tasks={tasks} />}
+                {tasks.length === 0 && <NoContent text='tasks' variant='no-tasks' />}
             </CardAdd>
+
+            
         </>
     );
 };

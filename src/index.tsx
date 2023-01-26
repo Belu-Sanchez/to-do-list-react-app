@@ -22,6 +22,7 @@ root.render(
         <Route path="tasks/">
           <Route index element={<Tasks />} />
           <Route path="save" element={<AddTasks />} />
+          <Route path="save/:id" element={<AddTasks />} /> 
         </Route>
     
         <Route path="tasks/save" element={<AddTasks />} />

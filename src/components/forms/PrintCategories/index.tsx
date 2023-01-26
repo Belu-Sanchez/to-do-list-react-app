@@ -1,45 +1,33 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { FC, useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { categoriesServices } from "../../../services/categories";
 import { Category } from "../../../types";
+import { Spinner } from "../../commons";
 import { Button } from "../Button";
+import { FilterFileds } from "./types";
+import { FormFilterCategories } from "../FormFilterCategories";
+
+type Props = {
+  categories: Category[];
+}
 
 
+const PrintCategories:FC<Props> = ({categories}) => {
 
-
-
-const PrintCategories = () => {
-
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [search, setSearch] = useState("");
   const navigate = useNavigate();
-  
-  const fetchData = () => categoriesServices.getAll(search).then((data) => setCategories(data));
 
-  useEffect(() => {
-    fetchData();
-  }, [search]);
-  
   const removeCategory = async (id: string) => {
     await categoriesServices.remove(id);
-    fetchData();
 
   }
-  
+
+ 
+
+
   return (
     <>
-    <form action="">
-        <input
-          type="text"
-          name="text"
-          id="text"
-          placeholder="Search categories"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-
-        </form>
-      <div className="container-table"> 
+    {!categories.length && <Spinner />}
+      <div className="container-table">
         <div className="table-responsive">
           <table className="table table-hover">
             <thead>
@@ -54,21 +42,21 @@ const PrintCategories = () => {
                 return (
                   <tr key={elem.id}>
                     <td>{elem.name}</td>
-                    <td style={{ background: `${elem.color}` }}></td>
+                    <td style={{ background: `${elem.color}` }}>{elem.color}</td>
                     <td className="d-flex justify-content-center">
                       <Button
                         type="button"
-                        variant="outline-danger btn-tabla"
+                        variant="outline-danger btn-tabla m-3"
                         icon="trash"
                         handleClick={() => removeCategory(elem.id)}
                       />
-                    
+
                       <Button
-                      type="button"
-                    variant="outline-secondary btn-tabla"
-                    icon="pencil"
-                    handleClick={() => navigate(`/categories/save/${elem.id}`)}
-                  />
+                        type="button"
+                        variant="outline-secondary btn-tabla m-3"
+                        icon="pencil"
+                        handleClick={() => navigate(`/categories/save/${elem.id}`)}
+                      />
                     </td>
                   </tr>
                 );
@@ -76,8 +64,8 @@ const PrintCategories = () => {
 
             </tbody>
           </table>
-        </div> 
         </div>
+      </div>
     </>
   );
 };
