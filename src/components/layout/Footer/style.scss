@@ -1,10 +1,16 @@
+
 footer{
-  align-self: flex-end;
+  // align-self: flex-end;
+  // position: absolute;
+  // bottom: 0;
+  margin-top: auto;
   width: 100%;
   padding: 1.5em;
   font-size: 1em;
   background-image: linear-gradient(to right, #ffd64f1a, #d400f970);
   color: white;
+
+
   .container{
     div{
       display:flex;

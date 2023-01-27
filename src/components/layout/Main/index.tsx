@@ -1,7 +1,7 @@
 import { title } from "process"
 import { FC, ReactNode } from "react"
 import { Container } from "react-bootstrap"
-// import { Category, Task } from "../../../pages";
+import './style.scss'
 
 type Props = {
     children: ReactNode
